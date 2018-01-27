@@ -14,6 +14,9 @@
 
 	wget -c https://github.com/openresty/lua-nginx-module/archive/v0.10.12rc2.tar.gz
 
+	cd  /opt/src/pcre-8.37
+	chmod +x config
+	make && make install
 
 
 ----------

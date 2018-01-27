@@ -33,3 +33,12 @@ purge CACHE
 	yum -y install keepalived
 
 
+	find / –type f |xargs grep "uu898.cc"
+	find .|xargs grep -ri "ddzservice"
+	grep -r "httpd" /opt/
+
+
+
+
+
+
