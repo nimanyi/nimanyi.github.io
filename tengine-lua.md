@@ -18,6 +18,9 @@
 	chmod +x config
 	make && make install
 
+	wget -c https://github.com/openresty/redis2-nginx-module/archive/v0.15rc1.zip
+
+	unzip v0.15rc1.zip
 
 ----------
 

@@ -40,5 +40,16 @@ purge CACHE
 
 
 
+python 安装redis支持
 
 
+	yum -y install python-pip
+	pip install redis
+
+nginx redis Lua 支持
+
+	wget -c https://github.com/openresty/lua-resty-redis/archive/v0.26.zip
+
+	unzip v0.26.zip
+
+	
