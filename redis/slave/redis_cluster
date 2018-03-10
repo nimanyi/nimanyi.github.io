@@ -1,0 +1,88 @@
+#!/bin/sh  
+#chkconfig: 2345 10 90  
+#description: Startup and stop script for Redis  
+  
+PATH=/usr/local/bin:/sbin:/usr/bin:/bin  
+REDIS_BIND_IP=0.0.0.0  
+REDISPORT_1=6390  
+REDISPORT_2=6391  
+REDISPORT_3=6392  
+REDISPORT_4=6393  
+REDISPORT_5=6394  
+REDISPORT_6=6395  
+REDISPORTS=($REDISPORT_1 $REDISPORT_2 $REDISPORT_3)  
+  
+EXEC=/usr/local/redis/bin/redis-server  
+REDIS_CLI=/usr/local/redis/bin/redis-cli  
+  
+PIDFILE_1=/var/run/redis_6390.pid  
+PIDFILE_2=/var/run/redis_6391.pid  
+PIDFILE_3=/var/run/redis_6392.pid  
+PIDFILE_4=/var/run/redis_6393.pid  
+PIDFILE_5=/var/run/redis_6394.pid  
+PIDFILE_6=/var/run/redis_6395.pid  
+PIDFILES=($PIDFILE_1 $PIDFILE_2 $PIDFILE_3)  
+  
+CONF_1=/usr/local/redis/etc/redis_6390.conf  
+CONF_2=/usr/local/redis/etc/redis_6391.conf
+CONF_3=/usr/local/redis/etc/redis_6392.conf
+CONF_4=/usr/local/redis/etc/redis_6393.conf  
+CONF_5=/usr/local/redis/etc/redis_6394.conf 
+CONF_6=/usr/local/redis/etc/redis_6395.conf 
+CONFS=($CONF_1 $CONF_2 $CONF_3)  
+  
+case "$1" in  
+    start)  
+        i=0  
+        for PID in ${PIDFILES[@]}  
+        do  
+                if [ -e $PID ]  
+                then  
+                        echo "$PID has exist, process is running"  
+                else  
+                        echo "$PID Start ..."  
+                        $EXEC ${CONFS[i]}  
+                fi  
+                if [ "$?" == "0" ]  
+                then  
+                        echo "$PID is running"  
+                else  
+                        echo "$PID is failed to start"  
+                fi  
+                let i++  
+        done  
+        ;;  
+  
+    stop)  
+        i=0  
+        for PID in ${PIDFILES[@]}  
+        do  
+                if [ ! -e $PID ]  
+                then  
+                        echo "$PID does not exist, process is not running"  
+                else  
+                        echo "$PID Stoping ..."  
+                        echo ${REDISPORTS[i]}
+
+			$REDIS_CLI -h $REDIS_BIND_IP -p ${REDISPORTS[i]} SHUTDOWN  
+                        sleep 2  
+                        while [ -e $PID ]  
+                        do  
+                            echo "Waiting for Redis to shutdown ..."  
+                            sleep 1  
+                        done  
+                        echo "$PID stopped"  
+                fi  
+                let i++  
+        done  
+        ;;  
+  
+   restart)  
+        ${0} stop  
+        ${0} start  
+        ;;  
+  *)  
+    echo "Usage: /etc/init.d/redis_cluster {start|stop|restart}" >&2  
+        exit 1  
+esac  
+
