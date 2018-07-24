@@ -33,7 +33,12 @@
 	rpm -ivh   http://ftp.linux.ncsu.edu/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
     yum -y install GeoIP GeoIP-data GeoIP-devel
-         
+        wget -c http://ftp.pcre.org/pub/pcre/pcre-8.37.tar.gz
+	
+	tar zxvf pcre-8.37.tar.gz
+	
+	tar zxvf pcre-8.37.tar.gz
+	
         wget -c https://codeload.github.com/gnosek/nginx-upstream-fair/zip/master
 	
 	unzip master
@@ -66,7 +71,7 @@
 	  --http-scgi-temp-path=/var/lib/nginx/scgi/  \
 	  --with-openssl=/opt/src/openssl-1.0.2c \
 	  --with-zlib=/opt/src/zlib-1.2.8 \
-	  --add-module=/opt/src/opt/src/nginx-upstream-fair-master \
+	  --add-module=/opt/src/nginx-upstream-fair-master \
 	  --add-module=/opt/src/ngx_cache_purge-2.3 \
 	  --add-module=/opt/src/lua-nginx-module-0.10.12rc2 \
 	  --add-module=/opt/src/ngx_devel_kit-0.3.1rc1 \
