@@ -27,14 +27,21 @@
 	tar zxvf v0.3.1rc1.tar.gz
 	
 	tar zxvf v0.10.12rc2.tar.gz
-	
-	chmod +x /opt/src/zlib-1.2.8/configure
+	wget -c  http://www.zlib.net/zlib-1.2.11.tar.gz
+        tar zxvf zlib-1.2.11.tar.gz
 	
 	rpm -ivh   http://ftp.linux.ncsu.edu/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
     yum -y install GeoIP GeoIP-data GeoIP-devel
-		
-	cd /opt/src/tengine-2.1.0
+         
+        wget -c https://codeload.github.com/gnosek/nginx-upstream-fair/zip/master
+	
+	unzip master
+	wget -c https://github.com/FRiCKLE/ngx_cache_purge/archive/2.3.tar.gz
+	tar zxvf 2.3.tar.gz
+        wget -c http://tengine.taobao.org/download/tengine-2.2.2.tar.gz
+	tar zxvf tengine-2.2.2.tar.gz
+	cd /opt/src/tengine-2.2.2
 	
 	./configure \
 	  --prefix=/opt/webserver/nginx \
@@ -57,10 +64,9 @@
 	  --http-fastcgi-temp-path=/var/lib/nginx/fcgi/  \
 	  --http-uwsgi-temp-path=/var/lib/nginx/uwsgi/  \
 	  --http-scgi-temp-path=/var/lib/nginx/scgi/  \
-	  --with-syslog  \
 	  --with-openssl=/opt/src/openssl-1.0.2c \
 	  --with-zlib=/opt/src/zlib-1.2.8 \
-	  --add-module=/opt/src/gnosek-nginx-upstream-fair-a18b409 \
+	  --add-module=/opt/src/opt/src/nginx-upstream-fair-master \
 	  --add-module=/opt/src/ngx_cache_purge-2.3 \
 	  --add-module=/opt/src/lua-nginx-module-0.10.12rc2 \
 	  --add-module=/opt/src/ngx_devel_kit-0.3.1rc1 \
