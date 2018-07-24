@@ -1,3 +1,4 @@
+	yum install -y gcc gcc-c++  zlib-devel
 	groupadd apache
 	useradd -g apache apache
 	
@@ -38,6 +39,14 @@
 	tar zxvf pcre-8.37.tar.gz
 	
 	tar zxvf pcre-8.37.tar.gz
+	cd pcre-8.37
+	./cofigure
+	make && make install
+	
+	cd /opt/src
+	
+	wget -c  https://ftp.openssl.org/source/old/1.0.2/openssl-1.0.2c.tar.gz
+	tar zxvf openssl-1.0.2c.tar.gz
 	
         wget -c https://codeload.github.com/gnosek/nginx-upstream-fair/zip/master
 	
