@@ -79,7 +79,7 @@
 	  --http-uwsgi-temp-path=/var/lib/nginx/uwsgi/  \
 	  --http-scgi-temp-path=/var/lib/nginx/scgi/  \
 	  --with-openssl=/opt/src/openssl-1.0.2c \
-	  --with-zlib=/opt/src/zlib-1.2.8 \
+	  --with-zlib=/opt/src/zlib-1.2.11 \
 	  --add-module=/opt/src/nginx-upstream-fair-master \
 	  --add-module=/opt/src/ngx_cache_purge-2.3 \
 	  --add-module=/opt/src/lua-nginx-module-0.10.12rc2 \
