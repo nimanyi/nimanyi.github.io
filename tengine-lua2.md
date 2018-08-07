@@ -1,6 +1,6 @@
 	yum install -y gcc gcc-c++  zlib-devel
-	groupadd apache
-	useradd -g apache apache
+	groupadd www
+	useradd -g www www
 	
 	mkdir -p /var/lib/nginx/client/
 	mkdir -p /data/proxy/proxy_temp_dir
@@ -63,8 +63,8 @@
 	  --error-log-path=/var/log/nginx/error.log \
 	  --pid-path=/var/run/nginx/nginx.pid  \
 	  --lock-path=/var/lock/nginx.lock \
-	  --user=apache \
-	  --group=apache \
+	  --user=www \
+	  --group=www \
 	  --with-http_ssl_module \
 	  --with-http_flv_module \
 	  --with-http_stub_status_module \
